@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>Please enter new value:</h2>
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="inputForm">
+    <mat-form-field *ngIf="data.column === 'position'">
+      <input
+        matInput
+        formControlName="position"
+        [(ngModel)]="value"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="!inputForm.valid"
+        >You must pass a number value.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field *ngIf="data.column === 'name'">
+      <input
+        matInput
+        formControlName="name"
+        [(ngModel)]="value"
+        *ngIf="data.column === 'name'"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="!inputForm.valid"
+        >You must pass a string value (only letters allowed).</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field *ngIf="data.column === 'weight'">
+      <input
+        matInput
+        formControlName="weight"
+        [(ngModel)]="value"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="!inputForm.valid"
+        >You must pass a decimal value.</mat-error
+      ></mat-form-field
+    >
+    <mat-form-field *ngIf="data.column === 'symbol'">
+      <input
+        matInput
+        formControlName="symbol"
+        [(ngModel)]="value"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="!inputForm.valid"
+        >You must pass a string value with 2 characters max (only letters
+        allowed).</mat-error
+      >
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-button
+    [disabled]="!inputForm.valid || !value"
+    [mat-dialog-close]="value"
+  >
+    Ok
+  </button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>
