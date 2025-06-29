@@ -9,9 +9,8 @@
   <mat-hint>Filter affects all columns</mat-hint>
 </mat-form-field>
 <table mat-table [dataSource]="dataSource()">
-  <ng-container
+  @for(column of columnsToDisplay; track column){<ng-container
     matColumnDef="{{ column }}"
-    *ngFor="let column of columnsToDisplay"
   >
     <th mat-header-cell *matHeaderCellDef>{{ getColumnName(column) }}</th>
     <td
@@ -21,8 +20,8 @@
       *matCellDef="let element"
     >
       {{ element[column] }}
-    </td>
-  </ng-container>
+    </td> </ng-container
+  >}
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
 </table>

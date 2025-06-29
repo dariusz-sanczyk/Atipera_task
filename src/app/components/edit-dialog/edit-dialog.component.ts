@@ -6,7 +6,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { InputData } from '../../models/input-data.model';
 import { InputStateMatcher } from '../../utils/ErrorStateMatcher';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -19,8 +18,8 @@ import { NgIf } from '@angular/common';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose,
-    NgIf],
+    MatDialogClose
+  ],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.scss'
 })

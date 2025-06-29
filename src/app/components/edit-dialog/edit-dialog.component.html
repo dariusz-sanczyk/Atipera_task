@@ -1,52 +1,46 @@
 <h2 mat-dialog-title>Please enter new value:</h2>
 <mat-dialog-content class="dialog-content">
   <form [formGroup]="inputForm">
-    <mat-form-field *ngIf="data.column === 'position'">
+    @if(data.column === 'position'){<mat-form-field>
       <input
         matInput
         formControlName="position"
         [(ngModel)]="value"
         [errorStateMatcher]="matcher"
       />
-      <mat-error *ngIf="!inputForm.valid"
-        >You must pass a number value.</mat-error
-      >
-    </mat-form-field>
-    <mat-form-field *ngIf="data.column === 'name'">
+      @if(!inputForm.valid){<mat-error>You must pass a number value.</mat-error
+      >} </mat-form-field
+    >} @if(data.column === 'name'){<mat-form-field>
       <input
         matInput
         formControlName="name"
         [(ngModel)]="value"
-        *ngIf="data.column === 'name'"
         [errorStateMatcher]="matcher"
       />
-      <mat-error *ngIf="!inputForm.valid"
+      @if(!inputForm.valid){<mat-error
         >You must pass a string value (only letters allowed).</mat-error
-      >
-    </mat-form-field>
-    <mat-form-field *ngIf="data.column === 'weight'">
+      >} </mat-form-field
+    >} @if(data.column === 'weight'){<mat-form-field>
       <input
         matInput
         formControlName="weight"
         [(ngModel)]="value"
         [errorStateMatcher]="matcher"
       />
-      <mat-error *ngIf="!inputForm.valid"
-        >You must pass a decimal value.</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field *ngIf="data.column === 'symbol'">
+      @if(!inputForm.valid){<mat-error>You must pass a decimal value.</mat-error
+      >}</mat-form-field
+    >} @if(data.column === 'symbol'){<mat-form-field>
       <input
         matInput
         formControlName="symbol"
         [(ngModel)]="value"
         [errorStateMatcher]="matcher"
       />
-      <mat-error *ngIf="!inputForm.valid"
+      @if(!inputForm.valid){<mat-error
         >You must pass a string value with 2 characters max (only letters
         allowed).</mat-error
-      >
-    </mat-form-field>
+      >} </mat-form-field
+    >}
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
