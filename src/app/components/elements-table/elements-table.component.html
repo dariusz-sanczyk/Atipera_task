@@ -1,0 +1,28 @@
+<mat-form-field class="filter">
+  <mat-label>Filter</mat-label>
+  <input
+    [formControl]="filterControl"
+    matInput
+    placeholder="E.g. 'He' or 4.00"
+    #input
+  />
+  <mat-hint>Filter affects all columns</mat-hint>
+</mat-form-field>
+<table mat-table [dataSource]="dataSource$">
+  <ng-container
+    matColumnDef="{{ column }}"
+    *ngFor="let column of columnsToDisplay"
+  >
+    <th mat-header-cell *matHeaderCellDef>{{ getColumnName(column) }}</th>
+    <td
+      class="cell"
+      (click)="openEditDialog(column, element)"
+      mat-cell
+      *matCellDef="let element"
+    >
+      {{ element[column] }}
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+</table>
