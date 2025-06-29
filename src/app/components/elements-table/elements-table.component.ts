@@ -1,7 +1,7 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, ChangeDetectionStrategy } from '@angular/core';
 import { PeriodicElement } from '../../models/element.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, map, startWith } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { ElementsStore } from '../../store/elements.store';
@@ -15,8 +15,10 @@ import { MatInputModule } from '@angular/material/input';
   imports: [MatTableModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './elements-table.component.html',
   styleUrls: ['./elements-table.component.scss'],
-  providers: [ElementsStore]
+  providers: [ElementsStore],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class ElementsTableComponent {
   public columnsToDisplay: string[] = ['position', 'name', 'weight', 'symbol'];
   public filterControl = new FormControl('');
@@ -25,7 +27,6 @@ export class ElementsTableComponent {
 
   private filterSignal = toSignal(
     this.filterControl.valueChanges.pipe(
-      startWith(''),
       debounceTime(2000),
       map((value) => (value ?? '').trim().toLowerCase())
     ),

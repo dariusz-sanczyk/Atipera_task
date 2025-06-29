@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
@@ -21,7 +21,8 @@ import { InputStateMatcher } from '../../utils/ErrorStateMatcher';
     MatDialogClose
   ],
   templateUrl: './edit-dialog.component.html',
-  styleUrl: './edit-dialog.component.scss'
+  styleUrl: './edit-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditDialogComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<EditDialogComponent>);
@@ -29,7 +30,7 @@ export class EditDialogComponent implements OnInit {
   public value!: string | number;
   public valueType: string = '';
   public inputForm!: FormGroup;
-  matcher = new InputStateMatcher();
+  public matcher = new InputStateMatcher();
 
   constructor(private fb: FormBuilder) {}
 
