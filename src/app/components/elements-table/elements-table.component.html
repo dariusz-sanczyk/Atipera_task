@@ -8,7 +8,7 @@
   />
   <mat-hint>Filter affects all columns</mat-hint>
 </mat-form-field>
-<table mat-table [dataSource]="dataSource$">
+<table mat-table [dataSource]="dataSource()">
   <ng-container
     matColumnDef="{{ column }}"
     *ngFor="let column of columnsToDisplay"
