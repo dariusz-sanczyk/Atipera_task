@@ -1,9 +1,6 @@
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
 import { PeriodicElement } from "../models/element.model";
-
-type ElementsState = {
-    elements: PeriodicElement[]
-};
+import { ElementsState } from "../models/elements-state.model";
 
 const ELEMENT_DATA: ElementsState = {
     elements: [
